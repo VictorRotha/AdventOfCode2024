@@ -3,34 +3,30 @@ package day01
 import java.io.File
 import kotlin.math.abs
 
-fun main(args: Array<String>) {
+fun main() {
 
-    val file = File("src/main/kotlin/day01/example_input.txt")
+    val file = File("src/main/kotlin/day01/input.txt")
 
-    val list1 = mutableListOf<Int>()
-    val list2 = mutableListOf<Int>()
+    val (left, right) = file.bufferedReader()
+        .readLines()
+        .map {line ->
+            val entries = line.split("   ")
+            Pair(entries[0].toInt(), entries[1].toInt())
+            }
+        .unzip()
 
-    file.bufferedReader().forEachLine { line ->
-        val entries = line.split("   ")
-        list1.add(entries[0].toInt())
-        list2.add(entries[1].toInt())
-    }
-
-    list1.sort()
-    list2.sort()
-
-    val part01 = IntRange(0, list1.size - 1).sumOf { i ->
-        abs(list1[i] - list2[i])
-    }
+    val part01 = left.sorted()
+        .zip(right.sorted())
+        .sumOf { abs(it.first - it.second) }
 
     println("Solution part 01: $part01")
 
-    val frequency = mutableMapOf<Int, Int>()
-    val part02 = list1.sumOf { n ->
-        if (!frequency.containsKey(n))
-            frequency[n] = list2.count { m -> m == n }
-        n * frequency[n]!!
-    }
+    val counts = right
+        .groupBy { it }
+        .mapValues { l -> l.value.count() }
+
+
+    val part02 = left.sumOf { it * counts.getOrDefault(it, 0) }
 
     println("Solution part 02: $part02")
 

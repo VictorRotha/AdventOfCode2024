@@ -6,10 +6,8 @@ import kotlin.math.abs
 fun main() {
 
     val file = File("src/main/kotlin/day02/input.txt")
-
     part01(file)
     part02(file)
-
 
 }
 
@@ -17,18 +15,12 @@ fun part01(file: File) {
     var count = 0
     file.bufferedReader().forEachLine { line ->
         val report = line.split(" ").map { it.toInt() }
-
         if (isSafeReport(report))
             count++
-
-
-
     }
-
 
     println("Solution part 01: $count")
 }
-
 
 fun part02(file: File) {
     var count = 0
@@ -56,7 +48,12 @@ fun part02(file: File) {
 
 fun isSafeReport(report: List<Int>) : Boolean {
 
-    var dir = 0
+    val firstDelta = ((report[1] - report[0]))
+    val dir = when {
+        firstDelta > 0 -> 1
+        firstDelta < 0 -> -1
+        else -> 0
+    }
 
     for (i in 1..<report.size) {
 
@@ -64,8 +61,6 @@ fun isSafeReport(report: List<Int>) : Boolean {
         if (!isSafeStep(delta, dir)) {
                 return false
         }
-
-        dir = if (delta > 0) 1 else -1
 
     }
 
