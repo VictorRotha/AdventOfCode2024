@@ -4,18 +4,54 @@ package day04
 import java.io.File
 
 fun main() {
-
     part01()
+    part02()
+}
+
+fun part02() {
+
+    val input = getInput()
+
+    var sum = 0
+    for (y in input.indices) {
+
+        for (x in input[y].indices) {
+            val c = input[y][x]
+            if (c == 'A' && checkX(x, y, input)) {
+                sum++
+            }
+        }
+    }
+
+    println("Solution part 02: $sum")
+
+}
+
+fun checkX(x: Int, y: Int, input: List<String>) : Boolean {
+
+    if (y < 1 || y > input.size - 2)
+       return false
+
+    if (x < 1 || x > input[y].length - 2)
+        return false
+
+    val neighbours = listOf(
+        input[y-1][x-1],
+        input[y-1][x+1],
+        input[y+1][x-1],
+        input[y+1][x+1],
+    ).joinToString("")
+
+    val validNeighbours = listOf("MSMS", "MMSS", "SSMM", "SMSM")
+
+    return validNeighbours.contains(neighbours)
 }
 
 
 fun part01() {
-    val file = File("src/main/kotlin/day04/input.txt")
 
-    val input = mutableListOf<String>()
-    file.bufferedReader().forEachLine {
-        input.add(it)
-    }
+    val input = getInput()
+
     var sum = 0
     sum += findXMAS(input)
 
@@ -68,10 +104,7 @@ fun rotate45(input: List<String>) : List<String> {
         result.add(temp)
     }
 
-
-
         return result.map { list -> list.joinToString("") }
-
 
 }
 
@@ -106,7 +139,12 @@ fun findXMAS(input: List<String>) : Int {
 
 }
 
-fun getInput() : String {
-    val file = File("src/main/kotlin/day04/example_input.txt")
-    return file.bufferedReader().readText()
+fun getInput() : List<String> {
+    val file = File("src/main/kotlin/day04/input.txt")
+
+    val input = mutableListOf<String>()
+    file.bufferedReader().forEachLine {
+        input.add(it)
+    }
+    return input
 }
