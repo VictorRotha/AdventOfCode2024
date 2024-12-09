@@ -8,3 +8,5 @@
 - [Day 6: Guard Gallivant](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day06/Day06.kt)
 - [Day 7: Bridge Repair](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day07/Day07.kt)
 - [Day 8: Resonant Collinearity](https://github.com/VictorRotha/AdvetOfCode2024/blob/master/src/main/kotlin/day08/Day08.kt)
+- [Day 9: Disk Fragmenter](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day09/Day09.kt)
+- 
