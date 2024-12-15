@@ -11,3 +11,4 @@
 - [Day 9: Disk Fragmenter](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day09/Day09.kt)
 - [Day 10: Hoof It](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day10/Day10.kt)
 - [Day 11: Plutonian Pebbles](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day11/Day11.kt)
+- [Day 12: Garden Groups](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day12/Day12.kt)
