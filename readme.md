@@ -12,3 +12,4 @@
 - [Day 10: Hoof It](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day10/Day10.kt)
 - [Day 11: Plutonian Pebbles](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day11/Day11.kt)
 - [Day 12: Garden Groups](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day12/Day12.kt)
+- [Day 13: Claw Contraption](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day13/Day13.kt)

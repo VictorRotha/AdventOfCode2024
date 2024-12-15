@@ -5,28 +5,76 @@ import kotlin.math.min
 
 fun main() {
 
+    getInput()
+
     val machines = getInput()
-    var total = 0
-    for (m in machines) {
-        val cost = findCheapest(m)
-        if (cost > 0)
-            total += cost
+    part01(machines)
+    part02(machines)
+}
+
+fun part02(input : List<List<Int>>) {
+
+    //Px = A * ax + B * bx
+    //Py = A * ay + B * by
+    //cost = 3 * A + B
+
+    //A = (Pxby - Pybx) / (axby - aybx)
+    //B = (Pyax - Pxay) / (axby - aybx)
+
+    var total = 0L
+    for (machine in input) {
+
+        val ax = machine[0]
+        val ay = machine[1]
+        val bx = machine[2]
+        val by = machine[3]
+        val px = machine[4] + 10000000000000L
+        val py = machine[5] + 10000000000000L
+
+        val d = (ax * by - ay * bx)
+        val a = (px * by - py * bx)
+        val b = (py * ax - px * ay)
+
+        if (a % d == 0L && (b % d) == 0L) {
+            val A = a / d
+            val B = b / d
+            total += 3 * A + B
+        }
     }
-    println("Solution part 01: $total")
+    println("Solution part 02: $total")
 
 
 }
 
-fun findCheapest(m: Machine): Int {
+fun part01(input : List<List<Int>>) {
+    var total = 0
+    for (machine in input) {
+        val cost = findCheapest(machine)
+        if (cost > 0)
+            total += cost
+    }
+
+    println("Solution part 01: $total")
+
+}
+
+fun findCheapest(m: List<Int>): Int {
+
+    val ax = m[0]
+    val ay = m[1]
+    val bx = m[2]
+    val by = m[3]
+    val px = m[4]
+    val py = m[5]
 
     var cheapest : Int = -1
-    for (i in 0 .. m.px / m.ax) {
-        val rest = m.px - i * m.ax
-        if (rest % m.bx != 0)
+    for (i in 0 .. px / ax) {
+        val rest = px - i * ax
+        if (rest % bx != 0)
             continue
 
-        val j = rest / m.bx
-        if (m.py != i * m.ay + j * m.by)
+        val j = rest / bx
+        if (py != i * ay + j * by)
             continue
 
         val cost = 3 * i + j
@@ -38,55 +86,17 @@ return cheapest
 
 }
 
-fun getInput(): List<Machine> {
+fun getInput() : List<List<Int>> {
 
     val file = File("src/main/kotlin/day13/input.txt")
-
-    val result = mutableListOf<Machine>()
-
-    var ax : Int = -1
-    var ay : Int = -1
-    var bx : Int = -1
-    var by : Int = -1
-    var px : Int = -1
-    var py : Int = -1
-
-    file.bufferedReader().forEachLine {line ->
-
-        when {
-            line.startsWith("Button A") -> {
-                val xy = line.split(": ")[1].split(", ")
-                ax = xy[0].split("+")[1].toInt()
-                ay = xy[1].split("+")[1].toInt()
-            }
-            line.startsWith("Button B") -> {
-                val xy = line.split(": ")[1].split(", ")
-                bx = xy[0].split("+")[1].toInt()
-                by = xy[1].split("+")[1].toInt()
-            }
-            line.startsWith("Prize") -> {
-                val xy = line.split(": ")[1].split(", ")
-                px = xy[0].split("=")[1].toInt()
-                py = xy[1].split("=")[1].toInt()
-            }
-            line.isEmpty() -> result.add(Machine(ax, ay, bx, by, px, py))
-        }
-
-
+    val result = mutableListOf<List<Int>>()
+    file.bufferedReader().readText().split("\n\n").forEach {block ->
+        result.add(Regex("[0-9]+").findAll(block)
+            .map { it.value.toInt() }
+            .toList())
     }
-    result.add(Machine(ax, ay, bx, by, px, py))
-
     return result
+
 }
 
-
-data class Machine(
-    val ax : Int,
-    val ay : Int,
-    val bx : Int,
-    val by : Int,
-    val px : Int,
-    val py : Int
-
-)
 
