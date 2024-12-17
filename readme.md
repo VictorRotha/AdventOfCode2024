@@ -14,3 +14,4 @@
 - [Day 12: Garden Groups](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day12/Day12.kt)
 - [Day 13: Claw Contraption](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day13/Day13.kt)
 - [Day 14: Restroom Redoubt](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day14/Day14.kt)
+- [Day 15: Warehouse Woes](https://github.com/VictorRotha/AdventOfCode2024/blob/master/src/main/kotlin/day15/Day15.kt)
